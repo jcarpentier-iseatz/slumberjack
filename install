@@ -1,0 +1,57 @@
+#! /bin/bash
+DEFAULT_VHOST_PATH="/etc/apache2/vhosts"
+
+echo "Slumberjack Installer"
+
+if [ -z "$1" ]; then
+  if [ -a $DEFAULT_VHOST_PATH ]; then
+    VHOST_PATH=$DEFAULT_VHOST_PATH
+  else
+    echo "Default Apache vhosts folder not found. Please re-run installer with vhosts path as the first option."
+    exit 1
+  fi
+else
+  if [ -a "$1" ]; then
+    VHOST_PATH=$1
+  else
+    echo "Apache vhost path $1 not found.  Please try again."
+    exit 1
+  fi
+fi
+
+echo "Installing for folder `pwd`"
+
+echo "Looking for the Sinatra gem..."
+gem list --local | grep "sinatra" > /dev/null
+if [ "$?" -ne "0" ]; then
+  echo "Sinatra not found.  Installing."
+  gem install sinatra
+  if [ "$?" -ne "0" ]; then
+    echo "Sinatra could not be installed. Maybe you should try."
+    exit 1
+  fi
+fi
+
+echo "Copying vhost file to ${VHOST_PATH%/}/slumberjack.conf..."
+touch ${VHOST_PATH%/}/slumberjack.conf
+sed "s-__install_folder__-`pwd`-g" slumberjack.conf | tee ${VHOST_PATH%/}/slumberjack.conf > /dev/null
+if [ "$?" -ne "0" ]; then
+  echo "Error 38AF3B39EB-110000010001: Could not install Apache vhost config file (slumberjack.conf)."
+  exit 1
+fi
+
+echo "Adding slumberjack to hosts..."
+echo -e "\n\n# Added by Slumberjack installer\n127.0.0.1 slumberjack" | tee -a /etc/hosts > /dev/null
+if [ "$?" -ne "0" ]; then
+  echo "Sorry, could not add slumberjack to /etc/hosts. Do it your own damn self."
+  exit 1
+fi
+
+echo "Restarting Apache..."
+apachectl restart
+if [ "$?" -ne "0" ]; then
+  echo "Apache wouldn't restart. Way to be a team player, Apache."
+  exit 1
+fi
+
+echo "Slumberjack has been installed.  Point your browser at http://slumberjack to begin your adventures in sloggery."

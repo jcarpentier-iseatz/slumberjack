@@ -1,0 +1,31 @@
+Slumberjack is a slog viewer with XML syntax highlighting and formatting to make your life easier.
+
+-------------- Installation ----------------
+You should have cloned the Mercurial repository into the folder you want Slumberjack to live. If not, move it there now.  We will wait...
+
+Slumberjack comes with a handy installer that will copy the vhost file to your Apache vhost folder (pointing it at the install folder), add slumberjack to your hosts file, and restart apache.
+
+If your vhost files live in /etc/apache2/vhosts, you are ready to install.  If not, the first argument to the installer is the location of your vhost files.
+
+Run the installer:
+  sudo ./install (path_to_vhost_folder)
+
+If you want to install manually:
+  Install the Sinatra gem 'sudo gem install sinatra'
+  Copy slumberjack.conf to your vhost folder and edit it to point to the correct path (install_folder)/public.
+  Add an entry to your /etc/hosts to point slumberjack to 127.0.0.1
+  Restart Apache.
+
+Enjoy.
+
+
+-------------- Enjoyment ------------------
+Point your browser to http://slumberjack and you will see the latest slog from your simian_local database.
+The offset links step back in history.  Need to go back further? Change the "o" parameter in the url to something higher.
+To view supplier_slogs, navigate to http://slumberjack/supplier  There is also a link to the supplier_slog when you are viewing a slog(and vice-versa).
+If the XML is hard to read, click the [Format XML] button above the response.
+To view the un-highlighted response or to print, mouseover the XML and icons will appear in the top-right corner.
+
+
+-------------- Expansion ------------------
+If you want to make changes/fixes/additions, just branch, commit, and push.  Let me know you pushed code and I will merge it into the trunk.

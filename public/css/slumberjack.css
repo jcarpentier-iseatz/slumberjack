@@ -1,0 +1,86 @@
+body {
+  /*  */
+  font-family: Arial, sans-serif;
+}
+
+#controls {
+  /* Control bar @ top of page */
+  font-size: 80%;
+  float: left;
+}
+
+#title_bar {
+  width: 100%;
+  float: left;
+}
+
+.header {
+	margin-bottom: 4px;
+	background: #6A95A8;
+	padding: 4px 0 2px 10px;
+	border-bottom: 1px solid #919191;
+	margin-top: 6px;
+}
+
+.content {
+	margin-bottom: 10px;
+	padding:4px 2px;
+	border-bottom: 1px solid #919191;
+	font-size: .82em;
+	font-family: "Consolas","Bitstream Vera Sans Mono","Courier New",Courier,monospace;
+}
+
+.shaded {
+	background: #EEE;
+}
+
+.mono {
+	
+}
+
+table.params {
+  
+}
+table.params th {
+  vertical-align: top;
+  text-align: right;
+  font-family: Arial, sans-serif;
+  padding-right: 4px;
+}
+
+table.params tr {
+  /*  */
+  margin: 0 0;
+}
+
+.button {
+  /* Clickable span */
+  background: #FFFFB6;
+  text-decoration: none;
+  font-size: 60%;
+  padding: 2px 4px;
+}
+
+ul.tabbar {
+  /* toolbar list */
+  list-style: none;
+  padding-left:0;
+  position:relative;
+  top:6px;
+}
+
+.tabbar li {
+  /* tabbar tab */
+  -moz-box-shadow:3px 2px 2px #666666;
+  -webkit-box-shadow: 3px 2px 2px #666666;
+  box-shadow: 3px 2px 2px #666666;
+  background:none repeat scroll 0 0 #DDDDDD;
+  /* border:1px solid #444444; */
+  display:inline;
+  margin-right:6px;
+  padding:3px 8px;
+}
+
+.small {
+  font-size: 60%;
+}

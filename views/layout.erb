@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/> 
+    <title>SlumberJack - Chopping Slogs</title>
+    <%= include_js ["/js/jquery.js", "/js/slumberjack.js", "/js/shCore.js", "/js/shBrushXml.js"] %>
+    <%= include_css ["/css/slumberjack.css", "/css/sh/shCore.css", "/css/sh/shThemeDefault.css"] %>
+  </head>
+  <body>
+    <div id="title_bar">
+      <div style="float: left; padding-right: 8px;">
+        <span style="font-size: 150%">Slumberjack</span><br>
+        <span style="font-size: 70%; position: relative; top: -7px;"><%= tag_line %></span>
+      </div>
+      <div id="controls">
+        <ul class="tabbar">
+          <li><a href="<%= link(@page[:base_url], params.merge('o'=>nil)) %>">Latest</a></li>
+          <li> <%= offset_bar(@page[:base_url], params) %> </li>
+          <% if @page[:name] == :slog %>
+            <li><a href="<%= link Saxe::SUPPLIER_SLOG_PATH, {:format => params[:format]} %>">Supplier Slogs</a></li>
+          <% else %>
+            <li><a href="<%= link Saxe::SLOG_PATH, {:format => params[:format]} %>">Slogs</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <br><br>
+    <%= yield %>
+  </body>
+</html>
+  

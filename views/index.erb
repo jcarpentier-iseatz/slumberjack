@@ -1,0 +1,42 @@
+<div class='header'>
+  Data:
+</div>
+<div class='content shaded'>
+  <% supplier_slog_links = @slog.supplier_slogs.collect {|s| supplier_slog_link(s.id, :format => params[:format])  } %>
+  <table class="params">
+    <%= table_row "id", @slog.id %>
+    <%= table_row "created_at", @slog.created_at.strftime("%m/%d/%Y %H:%M:%S") %>
+    <%= table_row "supplier_slogs", supplier_slog_links.join(" ") %>
+    <%= table_row "response_time", @slog.response_time %>
+  </table>
+</div>
+<div class='header'>
+  Request:
+</div>
+<div class='content shaded' style="text-wrap: suppress;">
+  <%= escape_html @slog.request %>
+</div>
+<div class='header'>
+  Params:
+</div>
+<div class='content shaded'>
+  <pre><%=h(@slog.params) %></pre>
+</div>
+<% if params[:format] == "y" %>
+  <div class='header'>
+    Response:
+    <a class='button' href='<%= link(@page[:base_url], params.merge({'format' => "n"})) %>'>Show Raw</a>
+    <span class="small">(XML has been formated)</span>
+  </div>
+  <div class='content' id='formatted'>
+    <pre class="brush: xml"><%=x @slog.response %></pre>
+  </div>
+<% else %>
+  <div class='header'>
+    Response:
+    <a class='button' href='<%= link(@page[:base_url], params.merge({'format' => "y"})) %>'>Show Formatted</a>
+  </div>
+  <div class='content shaded' id='unformatted'>
+    <pre class="brush: xml"><%=h @slog.response %></pre>
+  </div>
+<% end %>

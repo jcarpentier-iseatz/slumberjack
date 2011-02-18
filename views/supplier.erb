@@ -1,0 +1,36 @@
+<div class='header'>
+  Data:
+</div>
+<div class='content'>
+  <table class="params">
+    <%= table_row "id", @supplier_slog.id %>
+    <%= table_row "created_at", @supplier_slog.created_at.strftime("%m/%d/%Y %H:%M:%S") %>
+    <%= table_row "slog_id", slog_link(@supplier_slog.slog_id) %>
+    <%= table_row "supplier_id", @supplier_slog.supplier_id %>
+    <%= table_row "remote_host", @supplier_slog.remote_host %>
+    <%= table_row "response_time", @supplier_slog.response_time %>
+  </table>
+</div>
+<div class='header'>
+  Request:
+</div>
+<div class='content shaded mono'>
+  <%= h(@supplier_slog.request).gsub("\n", "<br>\n") %>
+</div>
+<% if params[:format] == "y" %>
+  <div class='header'>
+    Response:
+    <a class='button' href='<%= link(@page[:base_url], params.merge({'format' => "n"})) %>'>Show Raw</a>
+  </div>
+  <div class='content' id='formatted'>
+    <pre class="brush: xml"><%=x @supplier_slog.response %></pre>
+  </div>
+<% else %>
+  <div class='header'>
+    Response:
+    <a class='button' href='<%= link(@page[:base_url], params.merge({'format' => "y"})) %>'>Show Formatted</a>
+  </div>
+  <div class='content shaded' id='unformatted'>
+    <pre class="brush: xml"><%=h @supplier_slog.response %></pre>
+  </div>
+<% end %>
