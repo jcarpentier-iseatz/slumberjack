@@ -1,7 +1,7 @@
 Slumberjack is a slog viewer with XML syntax highlighting and formatting to make your life easier.
 
 -------------- Installation ----------------
-You should have cloned the Mercurial repository into the folder you want Slumberjack to live. If not, move it there now.  We will wait...
+You should have cloned this repository into the folder you want Slumberjack to live. If not, move it there now.  We will wait...
 
 Slumberjack comes with a handy installer that will copy the vhost file to your Apache vhost folder (pointing it at the install folder), add slumberjack to your hosts file, and restart apache.
 
